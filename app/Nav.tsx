@@ -20,6 +20,31 @@ import NextLink from "next/link";
 import { useTheme } from "next-themes";
 import { useSelectedLayoutSegment } from "next/navigation";
 
+const AppLogo = (
+  props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>
+) => (
+  <svg
+    aria-hidden="true"
+    focusable="false"
+    height="2.5em"
+    viewBox="0 0 383 112"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <path
+      d="M60.67 88L57.06 71.185H38.535L34.83 88H26.375L42.43 21.5H53.355L69.125 88H60.67ZM47.75 27.77L40.055 64.06H55.54L47.75 27.77ZM91.925 88V21.5H100.19V80.78H121.375V88H91.925ZM169.65 88L158.82 62.54L147.42 88H138.49L154.64 53.61L139.915 21.5H148.94L158.915 44.395L169.175 21.5H178.01L163 53.515L178.96 88H169.65ZM237.489 72.99C237.489 78.4367 236.222 82.3 233.689 84.58C231.219 86.86 227.102 88 221.339 88H202.719V21.5H220.199C225.899 21.5 230.205 22.6717 233.119 25.015C236.032 27.295 237.489 31.0633 237.489 36.32V72.99ZM229.224 35.465C229.224 33.375 228.59 31.7283 227.324 30.525C226.057 29.2583 224.379 28.625 222.289 28.625H210.984V80.875H222.194C224.6 80.875 226.374 80.3367 227.514 79.26C228.654 78.12 229.224 76.3467 229.224 73.94V35.465ZM265.074 88V21.5H296.234V28.435H273.339V50.19H293.859V57.125H273.339V81.065H296.234V88H265.074ZM341.896 88H330.591L317.576 21.5H325.936L336.386 79.64L347.691 21.5H355.861L341.896 88Z"
+      fill="white"
+    />
+    <path
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+      d="M43.1705 5L43.1955 0H5H0V5V103V108H5H378H383V103V5V0H378H135.348L135.323 5H378V103H5V5H43.1705Z"
+      fill="white"
+    />
+  </svg>
+);
+
 const SunIcon = (
   props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>
 ) => (
@@ -61,7 +86,6 @@ const MoonIcon = (
 export default function Nav() {
   const { data: session, status } = useSession();
   const { user } = session || {};
-  const isSubscribed = user?.subscriptionStatus === "active" || false;
   const segment = useSelectedLayoutSegment();
   const { theme, setTheme } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -74,15 +98,7 @@ export default function Nav() {
           className="sm:hidden"
         />
         <NavbarBrand>
-          <svg viewBox="0 0 24 24" style={{ height: 32 }}>
-            <path
-              d="M11.572 0c-.176 0-.31.001-.358.007a19.76 19.76 0 0 1-.364.033C7.443.346 4.25 2.185 2.228 5.012a11.875 11.875 0 0 0-2.119 5.243c-.096.659-.108.854-.108 1.747s.012 1.089.108 1.748c.652 4.506 3.86 8.292 8.209 9.695.779.25 1.6.422 2.534.525.363.04 1.935.04 2.299 0 1.611-.178 2.977-.577 4.323-1.264.207-.106.247-.134.219-.158-.02-.013-.9-1.193-1.955-2.62l-1.919-2.592-2.404-3.558a338.739 338.739 0 0 0-2.422-3.556c-.009-.002-.018 1.579-.023 3.51-.007 3.38-.01 3.515-.052 3.595a.426.426 0 0 1-.206.214c-.075.037-.14.044-.495.044H7.81l-.108-.068a.438.438 0 0 1-.157-.171l-.05-.106.006-4.703.007-4.705.072-.092a.645.645 0 0 1 .174-.143c.096-.047.134-.051.54-.051.478 0 .558.018.682.154.035.038 1.337 1.999 2.895 4.361a10760.433 10760.433 0 0 0 4.735 7.17l1.9 2.879.096-.063a12.317 12.317 0 0 0 2.466-2.163 11.944 11.944 0 0 0 2.824-6.134c.096-.66.108-.854.108-1.748 0-.893-.012-1.088-.108-1.747-.652-4.506-3.859-8.292-8.208-9.695a12.597 12.597 0 0 0-2.499-.523A33.119 33.119 0 0 0 11.573 0zm4.069 7.217c.347 0 .408.005.486.047a.473.473 0 0 1 .237.277c.018.06.023 1.365.018 4.304l-.006 4.218-.744-1.14-.746-1.14v-3.066c0-1.982.01-3.097.023-3.15a.478.478 0 0 1 .233-.296c.096-.05.13-.054.5-.054z"
-              fill={theme === "dark" ? "#FFFFFF" : "#100F13"}
-            />
-          </svg>
-          <p className="font-bold text-inherit hidden sm:flex pl-4">
-            Next.js 13 Demo App
-          </p>
+          <AppLogo />
         </NavbarBrand>
       </NavbarContent>
 
@@ -105,15 +121,6 @@ export default function Nav() {
             Feed
           </Link>
         </NavbarItem>
-        <NavbarItem isActive={segment === "subscribe"}>
-          <Link
-            color={segment === "subscribe" ? undefined : "foreground"}
-            href="/subscribe"
-            as={NextLink}
-          >
-            Subscribe
-          </Link>
-        </NavbarItem>
       </NavbarContent>
 
       <NavbarContent justify="end">
@@ -130,21 +137,7 @@ export default function Nav() {
         />
         {session ? (
           <>
-            {isSubscribed ? (
-              <Badge
-                disableOutline
-                content="PRO"
-                size="md"
-                color="primary"
-                className="font-bold text-xs py-1 px-2"
-              >
-                {user?.image ? (
-                  <Avatar src={user.image as string} />
-                ) : (
-                  <Avatar name={user?.name?.charAt(0) as string} />
-                )}
-              </Badge>
-            ) : user?.image ? (
+            {user?.image ? (
               <Avatar src={user.image as string} />
             ) : (
               <Avatar name={user?.name?.charAt(0) as string} />
@@ -191,19 +184,6 @@ export default function Nav() {
             as={NextLink}
           >
             Feed
-          </Link>
-        </NavbarMenuItem>
-        <NavbarMenuItem>
-          <Link
-            style={{
-              minWidth: "100%",
-              color: "inherit",
-              fontWeight: segment === "subscribe" ? "bold" : "normal",
-            }}
-            href="/subscribe"
-            as={NextLink}
-          >
-            Subscribe
           </Link>
         </NavbarMenuItem>
       </NavbarMenu>

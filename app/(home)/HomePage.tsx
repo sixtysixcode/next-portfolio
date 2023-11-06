@@ -283,7 +283,7 @@ export default function HomePage({ numStars }: { numStars: string }) {
           Welcome{user && `, ${user.name}`}!
         </h1>
         <h2 className="text-2xl font-medium">
-          This is an app built to showcase the capabilities of Next.js 13.
+          This is a full stack application built using React 18 client & server components, TypeScript, Prisma ORM, Railway PostgreSQL database & NextAuth.js OAuth 2.0 authentication.
         </h2>
 
         <Spacer y={1} />
@@ -292,31 +292,25 @@ export default function HomePage({ numStars }: { numStars: string }) {
           <Button
             className="font-medium bg-gradient-to-r from-pink-500 to-yellow-600 text-white shadow-lg"
             onClick={() =>
-              window.open("https://github.com/yaseenmustapha/nextjs13-app")
+              window.open("https://github.com/sixtysixcode/next-portfolio")
             }
           >
             Source Code on GitHub
           </Button>
-
-          <Link href="https://github.com/yaseenmustapha/nextjs13-app">
-            <p className="text-lg font-medium text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-pink-500 pr-2">
-              {numStars} stars on GitHub
-            </p>
-          </Link>
         </div>
 
         <User
         className="font-medium text-medium"
-          name="Yaseen Mustapha"
+          name="Alex Barnes"
           description={
-            <Link className="text-small" href="https://github.com/yaseenmustapha">
-              github.com/yaseenmustapha
+            <Link className="text-small" href="https://github.com/sixtysixcode">
+              github.com/sixtysixcode
             </Link>
           }
           avatarProps={{
-            src: "https://avatars.githubusercontent.com/u/26501999",
+            src: "https://avatars.githubusercontent.com/u/57994616?s=400&u=7d911434e3531bf1f1e14106f17d005c3343aa11&v=4",
           }}
-          onClick={() => window.open("https://github.com/yaseenmustapha")}
+          onClick={() => window.open("https://github.com/sixtysixcode")}
         />
 
         <Spacer y={5} />
