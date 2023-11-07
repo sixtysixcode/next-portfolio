@@ -21,8 +21,8 @@ export async function POST(req: Request) {
       // the actual Session ID is returned in the query parameter when your customer
       // is redirected to the success page.
       // success_url: `${process.env.BASE_URL}/subscribe/success?session_id={CHECKOUT_SESSION_ID}`,
-      success_url: `${process.env.BASE_URL}/subscribe/success`,
-      cancel_url: `${process.env.BASE_URL}/subscribe`,
+      success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/subscribe/success`,
+      cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/subscribe`,
     });
 
     return NextResponse.redirect(session.url as string, { status: 303 });
